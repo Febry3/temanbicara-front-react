@@ -6,6 +6,19 @@
     flex-direction: column;
     padding: 2rem;
     font-weight: 500;
+    transition: 0.5s ease;
+}
+
+.sidebar-closed {
+    width: 5rem;
+    height: 100vh;
+    background-color: #7D944D;
+    overflow: hidden;
+    transition: 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
 }
 
 .sidebar-links {
@@ -32,4 +45,28 @@
     width: 10rem;
     margin: 0 auto;
     margin-bottom: 1rem;
+}
+
+.sidebar-button {
+    position: absolute;
+    left: 15rem;
+    top: 1rem;
+    border: none;
+    background-color: #7D944D;
+    font-size: 2rem;
+    color: white;
+    border-radius: 5rem;
+    transition: 0.5s ease;
+}
+
+.sidebar-button-closed {
+    position: absolute;
+    left: 3.5rem;
+    top: 1rem;
+    border: none;
+    background-color: #7D944D;
+    font-size: 2rem;
+    color: white;
+    border-radius: 5rem;
+    transition: 0.5s ease;
 }
