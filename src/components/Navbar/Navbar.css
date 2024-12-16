@@ -1,0 +1,35 @@
+.sidebar {
+    height: 100vh;
+    width: 16.5rem;
+    background-color: #7D944D;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    font-weight: 500;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-links li {
+    margin: 1.5rem 0;
+}
+
+.sidebar-links a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 1.6rem;
+    transition: color 0.3s;
+}
+
+.sidebar-links a:hover {
+    color: #f39c12;
+}
+
+.sidebar-logo {
+    width: 10rem;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
