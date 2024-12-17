@@ -1,0 +1,9 @@
+.wrapper {
+    margin-left: 16.5rem;
+    transition: 0.5s ease;
+}
+
+.wrapper-closed {
+    margin-left: 5rem;
+    transition: 0.5s ease;
+}

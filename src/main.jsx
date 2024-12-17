@@ -5,11 +5,17 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import Layout from './components/Layout/Layout.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Dashboard from './pages/Dashboard/Dashboard.jsx'
+import Counselor from './pages/Counselor/Counselor.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />, // Parent route with Layout (Navbar)
+    element: <Layout />,
+    children: [
+      { index: true, element: <Dashboard /> },
+      { path: '/counselor', element: <Counselor /> },
+    ]
   },
 ]);
 

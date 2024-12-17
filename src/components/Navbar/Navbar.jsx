@@ -1,17 +1,10 @@
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../../assets/telogo.png';
-import { useState } from 'react';
+import leftlogo from '../../assets/left-logo.png';
 
+const Navbar = ({ isOpen, toggleSidebar }) => {
 
-
-
-const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(true);
-
-    const toggleSidebar = () => {
-        setIsOpen(!isOpen);
-    }
 
     return (
         <>
@@ -32,7 +25,7 @@ const Navbar = () => {
                                     <Link to="/contact"><i class="bi bi-clipboard"></i> Quiz</Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"> <i class="bi bi-person"></i> Counselor</Link>
+                                    <Link to="/counselor"> <i class="bi bi-person"></i> Counselor</Link>
                                 </li>
                                 <li>
                                     <Link to="/contact"><i class="bi bi-bar-chart"></i> Report</Link>
@@ -43,7 +36,7 @@ const Navbar = () => {
                             </ul>
                         </> :
                         <>
-                            <img className='sidebar-logo' src={logo} alt="Logo" />
+                            <img className='sidebar-logo-closed' src={leftlogo} alt="Logo" />
                             <ul className="sidebar-links">
                                 <li>
                                     <Link to="/"> <i class="bi bi-house"></i></Link>

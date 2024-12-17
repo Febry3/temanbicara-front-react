@@ -1,0 +1,11 @@
+.profile-pict {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+}
+
+.status {
+    border-radius: 2rem;
+    border: 1px solid green;
+    color: green;
+}
