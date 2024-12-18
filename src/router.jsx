@@ -4,6 +4,7 @@ import Counselor from "./pages/Counselor/Counselor.jsx";
 import Login from "./pages/Login/Login.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./security/ProtectedRoute.jsx";
+import NotFound from "./pages/NotFound/NotFound.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

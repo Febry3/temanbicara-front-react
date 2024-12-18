@@ -3,10 +3,10 @@ import AdminLogo from '../../assets/admin-bicara.png';
 import { useState } from 'react';
 import axiosClient from '../../axios';
 import { useUser } from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const { loginUser, user, token } = useUser();
+    const { loginUser } = useUser();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
