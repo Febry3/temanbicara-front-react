@@ -1,0 +1,15 @@
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-form {
+    width: 30%;
+}
+
+.login-logo {
+    height: 3.5rem;
+    margin: 2rem;
+}

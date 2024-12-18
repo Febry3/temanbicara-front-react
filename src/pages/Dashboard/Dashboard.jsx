@@ -27,10 +27,10 @@ const Dashboard = () => {
                 <InfoItem />
             </div>
 
-            <div className='flex-grow-1 d-flex gap-3 mt-5'>
-                <InfoTable />
-                <InfoTable />
-                <InfoTable />
+            <div className='flex-shrink-1 d-flex gap-3 mt-5'>
+                <ArticleTable />
+                <QuizTable />
+                <CounselorTable />
             </div>
         </div>
     );
@@ -45,7 +45,7 @@ const InfoItem = () => {
     );
 }
 
-const InfoTable = () => {
+const ArticleTable = () => {
     return (
         <div className='flex-grow-1 rounded shadow p-4'>
             <h3>Article</h3>
@@ -73,6 +73,77 @@ const InfoTable = () => {
         </div>
     );
 }
+
+const QuizTable = () => {
+    return (
+        <div className='flex-grow-1 flex-shrink-1 rounded shadow p-4'>
+            <h3>Quiz</h3>
+            <table className='table'>
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Quiz 1</td>
+                        <td>Quiz</td>
+                    </tr>
+                    <tr>
+                        <td>Quiz 1</td>
+                        <td>Quiz</td>
+                    </tr>
+                    <tr>
+                        <td>Quiz 1</td>
+                        <td>Quiz</td>
+                    </tr>
+                    <tr>
+                        <td>Quiz 1</td>
+                        <td>Quiz</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
+const CounselorTable = () => {
+    return (
+        <div className='flex-grow-1 flex-shrink-1 rounded shadow p-4'>
+            <h3>Counselor</h3>
+            <table className='table'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Field</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div>
+                                <p className='m-0'>Asep</p>
+                                <p className='m-0 text-secondary'>asep@temanbicara.com</p>
+                            </div>
+                        </td>
+                        <td>Relationship, Social</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <p className='m-0'>Asep</p>
+                                <p className='m-0 text-secondary'>asep@temanbicara.com</p>
+                            </div>
+                        </td>
+                        <td>Relationship, Social</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
 
 const Status = () => {
     return (

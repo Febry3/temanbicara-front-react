@@ -13,3 +13,19 @@ body {
   color: #7D944D;
   font-weight: 600;
 }
+
+.clr-primary {
+  color: #7D944D;
+}
+
+.back-primary {
+  background-color: #7D944D;
+}
+
+.button-primary {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.3rem 1.25rem;
+  color: white;
+  font-size: 1.25rem;
+}
