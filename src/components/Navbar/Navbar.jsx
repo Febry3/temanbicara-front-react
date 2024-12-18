@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../../assets/telogo.png';
 import leftlogo from '../../assets/left-logo.png';
+import { useUser } from '../../context/UserContext';
 
 const Navbar = ({ isOpen, toggleSidebar }) => {
-
+    const { logoutUser } = useUser();
 
     return (
         <>
@@ -31,7 +32,10 @@ const Navbar = ({ isOpen, toggleSidebar }) => {
                                     <Link to="/contact"><i className="bi bi-bar-chart"></i> Report</Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i className="bi bi-person-gear"></i> Admin</Link>
+                                    <Link to="/contact" ><i className="bi bi-person-gear"></i> Admin</Link>
+                                </li>
+                                <li>
+                                    <Link onClick={logoutUser}><i className="bi bi-box-arrow-left"></i> Logout</Link>
                                 </li>
                             </ul>
                         </> :
@@ -55,6 +59,9 @@ const Navbar = ({ isOpen, toggleSidebar }) => {
                                 </li>
                                 <li>
                                     <Link to="/contact"><i className="bi bi-person-gear"></i></Link>
+                                </li>
+                                <li>
+                                    <Link onClick={logoutUser}><i className="bi bi-box-arrow-left"></i></Link>
                                 </li>
                             </ul>
                         </>
