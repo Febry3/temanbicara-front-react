@@ -8,7 +8,7 @@ const Navbar = ({ isOpen, toggleSidebar }) => {
 
     return (
         <>
-            <button className={isOpen ? "sidebar-button" : "sidebar-button-closed"} onClick={toggleSidebar}>{isOpen ? <i class="bi bi-caret-left-fill"></i> : <i class="bi bi-caret-right-fill"></i>}</button>
+            <button className={isOpen ? "sidebar-button" : "sidebar-button-closed"} onClick={toggleSidebar}>{isOpen ? <i className="bi bi-caret-left-fill"></i> : <i class="bi bi-caret-right-fill"></i>}</button>
             <aside className={isOpen ? "sidebar" : "sidebar-closed"}>
                 {
                     isOpen ?
@@ -16,22 +16,22 @@ const Navbar = ({ isOpen, toggleSidebar }) => {
                             <img className='sidebar-logo' src={logo} alt="Logo" />
                             <ul className="sidebar-links">
                                 <li>
-                                    <Link to="/"> <i class="bi bi-house"></i> Dashboard</Link>
+                                    <Link to="/"> <i className="bi bi-house"></i> Dashboard</Link>
                                 </li>
                                 <li>
-                                    <Link to="/about"> <i class="bi bi-journal-text"></i> Article</Link>
+                                    <Link to="/about"> <i className="bi bi-journal-text"></i> Article</Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i class="bi bi-clipboard"></i> Quiz</Link>
+                                    <Link to="/contact"><i className="bi bi-clipboard"></i> Quiz</Link>
                                 </li>
                                 <li>
-                                    <Link to="/counselor"> <i class="bi bi-person"></i> Counselor</Link>
+                                    <Link to="/counselor"> <i className="bi bi-person"></i> Counselor</Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i class="bi bi-bar-chart"></i> Report</Link>
+                                    <Link to="/contact"><i className="bi bi-bar-chart"></i> Report</Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i class="bi bi-person-gear"></i> Admin</Link>
+                                    <Link to="/contact"><i className="bi bi-person-gear"></i> Admin</Link>
                                 </li>
                             </ul>
                         </> :
@@ -39,22 +39,22 @@ const Navbar = ({ isOpen, toggleSidebar }) => {
                             <img className='sidebar-logo-closed' src={leftlogo} alt="Logo" />
                             <ul className="sidebar-links">
                                 <li>
-                                    <Link to="/"> <i class="bi bi-house"></i></Link>
+                                    <Link to="/"> <i className="bi bi-house"></i></Link>
                                 </li>
                                 <li>
-                                    <Link to="/about"> <i class="bi bi-journal-text"></i></Link>
+                                    <Link to="/about"> <i className="bi bi-journal-text"></i></Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i class="bi bi-clipboard"></i></Link>
+                                    <Link to="/contact"><i className="bi bi-clipboard"></i></Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"> <i class="bi bi-person"></i></Link>
+                                    <Link to="/contact"> <i className="bi bi-person"></i></Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i class="bi bi-bar-chart"></i></Link>
+                                    <Link to="/contact"><i className="bi bi-bar-chart"></i></Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i class="bi bi-person-gear"></i></Link>
+                                    <Link to="/contact"><i className="bi bi-person-gear"></i></Link>
                                 </li>
                             </ul>
                         </>
