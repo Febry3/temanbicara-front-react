@@ -17,6 +17,8 @@ export const UserProvider = ({ children }) => {
         }
     );
 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
     const loginUser = (user, token) => {
         setUser(user);
         setToken(token);
@@ -31,7 +33,7 @@ export const UserProvider = ({ children }) => {
         localStorage.removeItem('TOKEN');
     }
 
-    return <UserContext.Provider value={{ user, setUser, token, setToken, loginUser, logoutUser }}>
+    return <UserContext.Provider value={{ user, setUser, token, setToken, loginUser, logoutUser, isSidebarOpen, setIsSidebarOpen }}>
         {children}
     </UserContext.Provider>;
 };

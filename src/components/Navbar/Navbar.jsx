@@ -4,15 +4,15 @@ import logo from '../../assets/telogo.png';
 import leftlogo from '../../assets/left-logo.png';
 import { useUser } from '../../context/UserContext';
 
-const Navbar = ({ isOpen, toggleSidebar }) => {
+const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
     const { logoutUser } = useUser();
 
     return (
         <>
-            <button className={isOpen ? "sidebar-button" : "sidebar-button-closed"} onClick={toggleSidebar}>{isOpen ? <i className="bi bi-caret-left-fill"></i> : <i class="bi bi-caret-right-fill"></i>}</button>
-            <aside className={isOpen ? "sidebar" : "sidebar-closed"}>
+            <button className={isSidebarOpen ? "sidebar-button" : "sidebar-button-closed"} onClick={toggleSidebar}>{isSidebarOpen ? <i className="bi bi-caret-left-fill"></i> : <i className="bi bi-caret-right-fill"></i>}</button>
+            <aside className={isSidebarOpen ? "sidebar" : "sidebar-closed"}>
                 {
-                    isOpen ?
+                    isSidebarOpen ?
                         <>
                             <img className='sidebar-logo' src={logo} alt="Logo" />
                             <ul className="sidebar-links">

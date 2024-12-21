@@ -1,0 +1,31 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 8;
+}
+
+.modal-content {
+    padding: 2.5rem;
+    position: fixed;
+    z-index: 8;
+    top: 42%;
+    left: 42%;
+    transform: translate(-42%, -42%);
+    width: 50rem;
+}
+
+.open {
+    margin-left: 16.5rem;
+    transition: 0.7s ease;
+    transform: translate(-10%, -5%);
+}
+
+.close {
+    margin-left: 5rem;
+    transition: 0.7s ease;
+    transform: translate(0%, -5%);
+}

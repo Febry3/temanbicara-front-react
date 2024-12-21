@@ -1,11 +1,22 @@
 import ReactDom from 'react-dom';
+import './Modal.css';
 
-const Modal = () => {
+const Modal = ({ isOpenModal, onClose, children, isSidebarOpen }) => {
+    if (!isOpenModal) return null;
+
     return ReactDom.createPortal(
         <>
-            <h1>Test Modal</h1>
+            <div className='modal-overlay'></div>
+            <div className='modal-content'>
+                <div className={`container bg-white border rounded shadow ${isSidebarOpen ? 'open' : 'close'}`}>
+                    <div className='container-fluid d-flex justify-content-end my-3'><i class="bi bi-x-lg" onClick={onClose}></i></div>
+                    {children}
+                </div>
+            </div>
         </>
-    );
+        , document.getElementById('portal')
+    )
+
 }
 
 export default Modal;
