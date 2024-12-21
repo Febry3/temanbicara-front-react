@@ -3,7 +3,7 @@ import AdminLogo from '../../assets/admin-bicara.png';
 import { useState } from 'react';
 import axiosClient from '../../axios';
 import { useUser } from '../../context/UserContext';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { loginUser } = useUser();
@@ -22,7 +22,7 @@ const Login = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axiosClient.post('/login', {
+            const response = await axiosClient.post('/admin/login', {
                 email: email,
                 password: password,
             });

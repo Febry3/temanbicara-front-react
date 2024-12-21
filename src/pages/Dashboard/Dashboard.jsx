@@ -1,7 +1,9 @@
 import avatar from '../../assets/avatar.png';
+import { useUser } from '../../context/UserContext';
 import './Dashboard.css';
 
 const Dashboard = () => {
+    const { user } = useUser();
     return (
         <div className='d-flex flex-column'>
             <div className="d-flex justify-content-between align-items-center">
@@ -13,14 +15,14 @@ const Dashboard = () => {
                 <div className="d-flex align-items-center gap-3">
                     <img className='profile-pict' src={avatar} alt="Avatar" />
                     <div className="d-flex flex-column">
-                        <h4 className="m-0">John Doe</h4>
+                        <h4 className="m-0">{user.name}</h4>
                         <p className="m-0">Admin</p>
                     </div>
                 </div>
             </div>
             <h2 className='page-title py-4'>Dashboard</h2>
 
-            <div className='flex-grow-1 d-flex gap-3'>
+            <div className='flex-grow-1 d-flex gap-3 flex-row'>
                 <InfoItem />
                 <InfoItem />
                 <InfoItem />
