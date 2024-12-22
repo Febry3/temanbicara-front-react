@@ -1,26 +1,10 @@
-import avatar from '../../assets/avatar.png';
-import { useUser } from '../../context/UserContext';
 import './Dashboard.css';
+import Header from '../../components/Header/Header';
 
 const Dashboard = () => {
-    const { user } = useUser();
     return (
         <div className='d-flex flex-column'>
-            <div className="d-flex justify-content-between align-items-center">
-                <div className="d-flex flex-column">
-                    <h3 className="m-0">Hello, Admin</h3>
-                    <p className="m-0">Have a nice day</p>
-                </div>
-
-                <div className="d-flex align-items-center gap-3">
-                    <img className='profile-pict' src={avatar} alt="Avatar" />
-                    <div className="d-flex flex-column">
-                        <h4 className="m-0">{user.name}</h4>
-                        <p className="m-0">Admin</p>
-                    </div>
-                </div>
-            </div>
-            <h2 className='page-title py-4'>Dashboard</h2>
+            <Header title={'Dashboard'} />
 
             <div className='flex-grow-1 d-flex gap-3 flex-row'>
                 <InfoItem />

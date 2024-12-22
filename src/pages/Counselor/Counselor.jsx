@@ -2,14 +2,75 @@ import { useState } from 'react';
 import Modal from '../../components/Modal/Modal';
 import './Counselor.css';
 import { useUser } from '../../context/UserContext';
+import Header from '../../components/Header/Header';
 
 const Counselor = () => {
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const { isSidebarOpen, setIsSidebarOpen } = useUser();
+    const { isSidebarOpen } = useUser();
     return (
         <>
-            <h1>Counselor</h1>
-            <button onClick={() => setIsOpenModal(true)}>Buka Modal</button>
+            <Header title={'Counselor'} />
+            <div className='d-flex gap-3 mb-5'>
+                <div className="input-group search-box">
+                    <span className="input-group-text px-3" id="search"><i class="bi bi-search"></i></span>
+                    <input type="text" className="form-control" placeholder="Cari Nama Konselor" aria-label="search" aria-describedby="search" name='search' />
+                </div>
+                <button onClick={() => setIsOpenModal(true)} type="button" className='btn btn-success btn-add'><i class="bi bi-plus-circle"></i> Tambah Konselor</button>
+            </div>
+
+            <div className='shadow rounded border p-3'>
+                <table className='table table-borderless '>
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Nomor Telepon</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Asep Surasep</td>
+                            <td>asep@temanbicara.com</td>
+                            <td>0869699696969</td>
+                            <td>
+                                <div className='d-flex gap-1'>
+                                    <button type="button" className='btn btn-primary'><i class="bi bi-eye"></i></button>
+                                    <button type="button" className='btn btn-success'><i class="bi bi-pencil"></i></button>
+                                    <button type="button" className='btn btn-danger'><i class="bi bi-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Asep Surasep</td>
+                            <td>asep@temanbicara.com</td>
+                            <td>0869699696969</td>
+                            <td>
+                                <div className='d-flex gap-1'>
+                                    <button type="button" className='btn btn-primary'><i class="bi bi-eye"></i></button>
+                                    <button type="button" className='btn btn-success'><i class="bi bi-pencil"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Asep Surasep</td>
+                            <td>asep@temanbicara.com</td>
+                            <td>0869699696969</td>
+                            <td>
+                                <div className='d-flex gap-1'>
+                                    <button type="button" className='btn btn-primary'><i class="bi bi-eye"></i></button>
+                                    <button type="button" className='btn btn-success'><i class="bi bi-pencil"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <Modal onClose={() => setIsOpenModal(false)} isOpenModal={isOpenModal} isSidebarOpen={isSidebarOpen}>
                 <div className='p-5'>
                     <form>
@@ -30,6 +91,10 @@ const Counselor = () => {
                             <span className="input-group-text" id="phone_number"><i class="bi bi-telephone"></i></span>
                             <input type="text" className="form-control" placeholder="Phone Number" aria-label="phone_number" aria-describedby="phone_number" name='phone_number' />
                         </div>
+                        <div className="input-group mb-3">
+                            <span className="input-group-text" id="password"><i class="bi bi-key"></i></span>
+                            <input type="password" className="form-control" placeholder="Password" aria-label="password" aria-describedby="password" name='password' />
+                        </div>
                         <div className='d-flex gap-3 mb-3'>
                             <div className="input-group">
                                 <span className="input-group-text" id="birthdate"><i class="bi bi-cake"></i></span>
@@ -41,7 +106,9 @@ const Counselor = () => {
                                 <option value="Perempuan">Perempuan</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Buat Akun Konselor</button>
+                        <div className='d-flex justify-content-center'>
+                            <button type="submit" class="btn btn-primary my-3 py-3">Buat Akun Konselor</button>
+                        </div>
                     </form>
                 </div>
             </Modal >
