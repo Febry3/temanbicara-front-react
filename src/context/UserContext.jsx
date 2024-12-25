@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useState, useContext } from "react";
 
 const UserContext = createContext(null);
@@ -5,11 +6,9 @@ const UserContext = createContext(null);
 export const useUser = () => { return useContext(UserContext) };
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(
-        () => {
-            return JSON.parse(localStorage.getItem('USER')) || null;
-        }
-    );
+     const [user, setUser] = useState(() => {
+        return JSON.parse(localStorage.getItem('USER')) || null;
+    });
 
     const [token, setToken] = useState(
         () => {

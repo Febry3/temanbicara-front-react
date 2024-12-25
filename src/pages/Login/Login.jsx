@@ -26,9 +26,7 @@ const Login = () => {
                 email: email,
                 password: password,
             });
-
             const { data, token } = response.data;
-
             loginUser(data, token);
             setErrorMessage('');
             navigate('/');
