@@ -22,16 +22,23 @@ const Login = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axiosClient.post('/admin/login', {
+            const response = await axiosClient.post('http://127.0.0.1:8000/api/v1/admin/login', {
                 email: email,
                 password: password,
             });
 
             const { data, token } = response.data;
 
-            loginUser(data, token);
-            setErrorMessage('');
-            navigate('/');
+            if (response.data.status === false) {
+                console.log('sadds');
+                setErrorMessage(response.data.message);
+            } else {
+                loginUser(data, token);
+                setErrorMessage('');
+                navigate('/');
+            }
+
+
         } catch (error) {
             console.log(error.response.data.message);
             setErrorMessage(error.response.data.message);
