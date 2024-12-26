@@ -20,7 +20,7 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
                                     <Link to="/"> <i className="bi bi-house"></i> Dashboard</Link>
                                 </li>
                                 <li>
-                                    <Link to="/about"> <i className="bi bi-journal-text"></i> Article</Link>
+                                    <Link to="/article"> <i className="bi bi-journal-text"></i> Article</Link>
                                 </li>
                                 <li>
                                     <Link to="/contact"><i className="bi bi-clipboard"></i> Quiz</Link>
@@ -46,7 +46,7 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
                                     <Link to="/"> <i className="bi bi-house"></i></Link>
                                 </li>
                                 <li>
-                                    <Link to="/about"> <i className="bi bi-journal-text"></i></Link>
+                                    <Link to="/article"> <i className="bi bi-journal-text"></i></Link>
                                 </li>
                                 <li>
                                     <Link to="/contact"><i className="bi bi-clipboard"></i></Link>
