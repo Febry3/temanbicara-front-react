@@ -40,7 +40,7 @@ const TableLoader = ({ isSidebarOpen }) => {
             <rect x="160" y="230" rx="10" ry="10" width="85" height="19" />
             <rect x="320" y="230" rx="10" ry="10" width="320" height="19" />
             <rect x="780" y="230" rx="10" ry="10" width="155" height="19" />
-            <rect x="1050" y="230" rx="10" ry="10" width="169" height="19" />
+            <rect x="1050" y="230" rx="10" ry="10" width="170" height="19" />
         </ContentLoader>
     )
 }
