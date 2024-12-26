@@ -52,7 +52,7 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
                                     <Link to="/contact"><i className="bi bi-clipboard"></i></Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"> <i className="bi bi-person"></i></Link>
+                                    <Link to="/counselor"> <i className="bi bi-person"></i></Link>
                                 </li>
                                 <li>
                                     <Link to="/contact"><i className="bi bi-bar-chart"></i></Link>
