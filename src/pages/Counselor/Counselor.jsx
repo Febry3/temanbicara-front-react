@@ -9,6 +9,8 @@ import { useCreateCounselorAccount } from '../../services/Counselor/useCreateCou
 import { MoonLoader } from 'react-spinners';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import { useDeleteCounselorAccount } from '../../services/Counselor/useDeleteCounselor';
+import LoadingOverlay from '../../components/Loading/LoadingOverlay';
+import TableLoader from '../../components/TableLoader/TableLoader';
 
 const Counselor = () => {
     const { token } = useUser();
@@ -31,6 +33,7 @@ const Counselor = () => {
         gender: ''
     });
 
+    //bisa make formik 
     const handleName = (event) => {
         setName(event.target.value)
     }
@@ -85,7 +88,7 @@ const Counselor = () => {
     }
 
     const [createError, setCreateError] = useState('');
-    const { data: counselorAccount, refetch } = useFetchCounselor({ token: token });
+    const { data: counselorAccount, refetch, isFetching } = useFetchCounselor({ token: token });
     const { mutateAsync: createCounselorAccount, isPending: isCreatePending } = useCreateCounselorAccount({ token: token, onSuccess: () => refetch(), onError: (error) => setCreateError(error.response.data.message) });
     const { mutate: deleteCounselorAccount, isPending: isDeletePending } = useDeleteCounselorAccount({ token: token, onSuccess: () => { refetch(); showToastSuccess('Akun konselor berhasil dihapus') }, onError: () => console.log() })
 
@@ -154,6 +157,7 @@ const Counselor = () => {
     return (
         <>
 
+            {isDeletePending && <LoadingOverlay />}
             <ToastContainer />
             <Header title={'Counselor'} />
             <div className='d-flex gap-3 mb-5'>
@@ -166,39 +170,46 @@ const Counselor = () => {
 
             <div className='shadow rounded border p-3'>
                 <table className='table table-borderless '>
-                    <thead>
-                        <tr>
-                            <th>User ID</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Nomor Telepon</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            counselorAccount?.data.data.map((acc) => {
-                                return (
-                                    <tr key={acc.id}>
-                                        <td>{acc.id}</td>
-                                        <td>{acc.name}</td>
-                                        <td>{acc.email}</td>
-                                        <td>{acc.phone_number}</td>
-                                        <td>
-                                            <div className='d-flex gap-1'>
-                                                <button type="button" className='btn btn-primary'><i className="bi bi-eye"></i></button>
-                                                <button type="button" className='btn btn-success'><i className="bi bi-pencil"></i></button>
-                                                <button onClick={() => deleteCounselorAccount(acc.id)} type="button" className='btn btn-danger'><i className="bi bi-trash"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                        }
+                    {isFetching ?
+                        <TableLoader isSidebarOpen={isSidebarOpen} /> :
+                        <>
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Nomor Telepon</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    counselorAccount?.data.data.map((acc) => {
+                                        return (
+                                            <tr key={acc.id}>
+                                                <td>{acc.id}</td>
+                                                <td>{acc.name}</td>
+                                                <td>{acc.email}</td>
+                                                <td>{acc.phone_number}</td>
+                                                <td>
+                                                    <div className='d-flex gap-1'>
+                                                        <button type="button" className='btn btn-primary'><i className="bi bi-eye"></i></button>
+                                                        <button type="button" className='btn btn-success'><i className="bi bi-pencil"></i></button>
+                                                        <button onClick={() => deleteCounselorAccount(acc.id)} type="button" className='btn btn-danger'><i className="bi bi-trash"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
 
-                    </tbody>
+                            </tbody>
+                        </>
+                    }
                 </table>
-            </div>
+            </div >
+
+
 
             <Modal onClose={() => setIsOpenModal(false)} isOpenModal={isOpenModal} isSidebarOpen={isSidebarOpen}>
                 <div className='p-5'>
