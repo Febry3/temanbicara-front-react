@@ -32,7 +32,7 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
                                     <Link to="/contact"><i className="bi bi-bar-chart"></i> Report</Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact" ><i className="bi bi-person-gear"></i> Admin</Link>
+                                    <Link to="/admin" ><i className="bi bi-person-gear"></i> Admin</Link>
                                 </li>
                                 <li>
                                     <Link onClick={logoutUser}><i className="bi bi-box-arrow-left"></i> Logout</Link>

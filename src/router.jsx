@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./security/ProtectedRoute.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
+import Admin from "./pages/Admin/Admin.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Dashboard /> },
       { path: "/counselor", element: <Counselor /> },
+      { path: "/admin", element: <Admin />},
     ],
   },
   {
@@ -23,6 +25,7 @@ const router = createBrowserRouter([
     path: "/*",
     element: <NotFound />,
   },
+
 ]);
 
 export default router;
