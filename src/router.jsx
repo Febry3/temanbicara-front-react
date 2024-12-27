@@ -1,6 +1,7 @@
 import Layout from "./components/Layout/Layout.jsx";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import Counselor from "./pages/Counselor/Counselor.jsx";
+import Article from "./pages/Article/Article.jsx";
 import Login from "./pages/Login/Login.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./security/ProtectedRoute.jsx";
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       { index: true, element: <Dashboard /> },
       { path: "/counselor", element: <Counselor /> },
       { path: "/admin", element: <Admin />},
+      { path: "/article", element: <Article /> },
     ],
   },
   {
