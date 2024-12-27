@@ -4,12 +4,14 @@ import { useState } from 'react';
 import axiosClient from '../../axios';
 import { useUser } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { MoonLoader } from 'react-spinners';
 
 const Login = () => {
     const { loginUser } = useUser();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleEmailChange = (event) => {
@@ -29,23 +31,22 @@ const Login = () => {
             const { data, token } = response.data;
 
             if (response.data.status === false) {
-                console.log('sadds');
                 setErrorMessage(response.data.message);
+                setIsLoading(false);
             } else {
                 loginUser(data, token);
                 setErrorMessage('');
+                setIsLoading(false);
                 navigate('/');
             }
-
-
         } catch (error) {
             console.log(error.response.data.message);
             setErrorMessage(error.response.data.message);
+            setIsLoading(false);
         }
     };
 
     return (
-
         <div className="login-wrapper">
             <div className="login-form border rounded shadow px-5 py-3">
                 <div className='d-flex justify-content-center'>
@@ -67,7 +68,7 @@ const Login = () => {
                         </div>
                     )}
                     <div className='d-flex justify-content-center'>
-                        <button type="button" className="button-primary back-primary my-3" onClick={handleSubmit}>Login</button>
+                        {isLoading ? <div className='my-3'><MoonLoader loading size={30} color='#7D944D' /></div> : <button type="button" className="button-primary back-primary my-3" onClick={() => { setIsLoading(true); handleSubmit() }}>Login</button>}
                     </div>
                 </form>
             </div>

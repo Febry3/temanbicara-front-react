@@ -1,9 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from '../../components/Modal/Modal';
 import './Counselor.css';
 import { useUser } from '../../context/UserContext';
 import Header from '../../components/Header/Header';
 import axiosClient from '../../axios';
+import { useFetchCounselor } from '../../services/Counselor/useFetchCounselor';
+import { useCreateCounselorAccount } from '../../services/Counselor/useCreateCounselor';
+import { MoonLoader } from 'react-spinners';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import { useDeleteCounselorAccount } from '../../services/Counselor/useDeleteCounselor';
+import LoadingOverlay from '../../components/Loading/LoadingOverlay';
+import TableLoader from '../../components/TableLoader/TableLoader';
 
 const Counselor = () => {
     const { token } = useUser();
@@ -16,7 +23,6 @@ const Counselor = () => {
     const [password, setPassword] = useState('');
     const [birthdate, setBirthdate] = useState('');
     const [gender, setGender] = useState('');
-    const [createError, setCreateError] = useState('');
     const [formError, setFormError] = useState({
         name: '',
         nickname: '',
@@ -27,6 +33,7 @@ const Counselor = () => {
         gender: ''
     });
 
+    //bisa make formik 
     const handleName = (event) => {
         setName(event.target.value)
     }
@@ -80,68 +87,78 @@ const Counselor = () => {
         return Object.values(error).every(value => value === '');
     }
 
+    const [createError, setCreateError] = useState('');
+    const { data: counselorAccount, refetch, isFetching } = useFetchCounselor({ token: token });
+    const { mutateAsync: createCounselorAccount, isPending: isCreatePending } = useCreateCounselorAccount({ token: token, onSuccess: () => refetch(), onError: (error) => setCreateError(error.response.data.message) });
+    const { mutate: deleteCounselorAccount, isPending: isDeletePending } = useDeleteCounselorAccount({ token: token, onSuccess: () => { refetch(); showToastSuccess('Akun konselor berhasil dihapus') }, onError: () => console.log() })
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (!validateForm()) {
             return
         }
 
-        const success = await createCounselorAccount();
+        await createCounselorAccount({
+            email: email,
+            password: password,
+            name: name,
+            nickname: nickname,
+            gender: gender,
+            birthdate: birthdate,
+            phone_number: phone
+        });
 
-        if (success) {
-            setIsOpenModal(false);
-            setName('');
-            setNickname('');
-            setEmail('');
-            setPhone('');
-            setPassword('');
-            setBirthdate('');
-            setGender('');
-            return;
-        }
+        console.log(createError);
+        clearModal();
+        showToastSuccess('Berhasil membuat akun konselor');
         return;
-
     }
 
-    const createCounselorAccount = async () => {
-        try {
-            const response = await axiosClient.post('http://localhost:3000/api/v1/counselor', {
-                email: email,
-                password: password,
-                name: name,
-                nickname: nickname,
-                gender: gender,
-                birthdate: birthdate,
-                phone_number: phone
-            },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-
-            if (response.data.status == false) {
-                setCreateError(response.data.message);
-                return false;
-            } else {
-                setCreateError('');
-                return true;
-            }
-
-
-        } catch (error) {
-            setCreateError(error.response.data.message);
-            return false;
-        }
+    const showToastSuccess = (message) => {
+        return toast.success(message, {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
     }
 
-    const deleteCounselorAccount = () => {
+    const showToastError = (message) => {
+        return toast.error(message, {
+            position: "bottom-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+    }
 
+    const clearModal = () => {
+        setIsOpenModal(false);
+        setName('');
+        setNickname('');
+        setEmail('');
+        setPhone('');
+        setPassword('');
+        setBirthdate('');
+        setGender('');
+        setCreateError('');
     }
 
     return (
         <>
+
+            {isDeletePending && <LoadingOverlay />}
+            <ToastContainer />
             <Header title={'Counselor'} />
             <div className='d-flex gap-3 mb-5'>
                 <div className="input-group search-box">
@@ -153,56 +170,46 @@ const Counselor = () => {
 
             <div className='shadow rounded border p-3'>
                 <table className='table table-borderless '>
-                    <thead>
-                        <tr>
-                            <th>User ID</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Nomor Telepon</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Asep Surasep</td>
-                            <td>asep@temanbicara.com</td>
-                            <td>0869699696969</td>
-                            <td>
-                                <div className='d-flex gap-1'>
-                                    <button type="button" className='btn btn-primary'><i className="bi bi-eye"></i></button>
-                                    <button type="button" className='btn btn-success'><i className="bi bi-pencil"></i></button>
-                                    <button type="button" className='btn btn-danger'><i className="bi bi-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Asep Surasep</td>
-                            <td>asep@temanbicara.com</td>
-                            <td>0869699696969</td>
-                            <td>
-                                <div className='d-flex gap-1'>
-                                    <button type="button" className='btn btn-primary'><i className="bi bi-eye"></i></button>
-                                    <button type="button" className='btn btn-success'><i className="bi bi-pencil"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Asep Surasep</td>
-                            <td>asep@temanbicara.com</td>
-                            <td>0869699696969</td>
-                            <td>
-                                <div className='d-flex gap-1'>
-                                    <button type="button" className='btn btn-primary'><i className="bi bi-eye"></i></button>
-                                    <button type="button" className='btn btn-success'><i className="bi bi-pencil"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                    {isFetching ?
+                        <TableLoader isSidebarOpen={isSidebarOpen} /> :
+                        <>
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Nama</th>
+                                    <th>Email</th>
+                                    <th>Nomor Telepon</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    counselorAccount?.data.data.map((acc) => {
+                                        return (
+                                            <tr key={acc.id}>
+                                                <td>{acc.id}</td>
+                                                <td>{acc.name}</td>
+                                                <td>{acc.email}</td>
+                                                <td>{acc.phone_number}</td>
+                                                <td>
+                                                    <div className='d-flex gap-1'>
+                                                        <button type="button" className='btn btn-primary'><i className="bi bi-eye"></i></button>
+                                                        <button type="button" className='btn btn-success'><i className="bi bi-pencil"></i></button>
+                                                        <button onClick={() => deleteCounselorAccount(acc.id)} type="button" className='btn btn-danger'><i className="bi bi-trash"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+
+                            </tbody>
+                        </>
+                    }
                 </table>
-            </div>
+            </div >
+
+
 
             <Modal onClose={() => setIsOpenModal(false)} isOpenModal={isOpenModal} isSidebarOpen={isSidebarOpen}>
                 <div className='p-5'>
@@ -259,9 +266,17 @@ const Counselor = () => {
                             {(formError.gender || formError.birthdate) && (<small className='text-danger'> Gender atau tanggal lahir tidak boleh kosong</small>)}
                         </div>
                         <div className='d-flex justify-content-center'>
-                            <button type="button" className="btn btn-primary my-3 py-2" onClick={(event) => handleSubmit(event)}>Buat Akun Konselor</button>
+                            {
+                                isCreatePending ?
+                                    <div className='my-4'><MoonLoader loading size={30} color='#7D944D' /></div> :
+                                    <button type="button" className="btn btn-primary my-3 py-2" onClick={(event) => handleSubmit(event)}>
+                                        Buat Akun Konselor
+                                    </button>
+                            }
                         </div>
+
                         {createError && (<small className='text-danger'> *{createError} </small>)}
+
                     </form>
                 </div>
             </Modal >

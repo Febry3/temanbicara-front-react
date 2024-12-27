@@ -18,17 +18,17 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   useEffect(() => {
     const token = localStorage.getItem("TOKEN");
-  
+
     if (!token) {
       setError("Token tidak ditemukan");
       setLoading(false);
       return;
     }
-  
+
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [expertiseResponse, articleResponse,counselorResponse,adminResponse] = await Promise.all([
+        const [expertiseResponse, articleResponse, counselorResponse, adminResponse] = await Promise.all([
           axios.get("http://localhost:3000/Expertise", {
             headers: { Authorization: `Bearer ${token}` },
           }),
@@ -42,6 +42,8 @@ const Dashboard = () => {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
+
+        console.log(expertiseResponse);
         setCounselor(counselorResponse.data.data);
         setExpertise(expertiseResponse.data.data);
         setAdmin(adminResponse.data.data)
@@ -53,17 +55,17 @@ const Dashboard = () => {
         console.log(err.response || err);
       }
     };
-  
+
     fetchData();
   }, []);
-  
+
 
   const groupedExpertise = expertise.reduce((acc, item) => {
-    const { user_name, user_email, type } = item; 
+    const { user_name, user_email, type } = item;
     const user_id = item.user_id;
-  
+
     if (user_name && user_email) {
-      const key = user_name; 
+      const key = user_name;
       if (!acc[key]) {
         acc[key] = {
           user: {
@@ -75,7 +77,7 @@ const Dashboard = () => {
         };
       }
       if (!acc[key].skills.includes(type)) {
-        acc[key].skills.push(type); 
+        acc[key].skills.push(type);
       }
     }
     return acc;
@@ -113,7 +115,7 @@ const Dashboard = () => {
       </div>
 
       <div className="flex-shrink-1 d-flex gap-3 mt-5">
-        <ArticleTable Article={article}/>
+        <ArticleTable Article={article} />
         <QuizTable />
         <CounselorTable groupedExpertise={groupedExpertise} />
       </div>
