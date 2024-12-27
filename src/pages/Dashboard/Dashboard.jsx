@@ -29,16 +29,16 @@ const Dashboard = () => {
       setLoading(true);
       try {
         const [expertiseResponse, articleResponse, counselorResponse, adminResponse] = await Promise.all([
-          axios.get("http://localhost:3000/Expertise", {
+          axios.get("http://localhost:3000/api/v1/Expertise", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://localhost:3000/article", {
+          axios.get("http://localhost:3000/api/v1/article", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://localhost:3000/counselor", {
+          axios.get("http://localhost:3000/api/v1/counselor", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://localhost:3000/admin", {
+          axios.get("http://localhost:3000/api/v1/admin", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
