@@ -12,19 +12,27 @@ const Article = () => {
     const [error, setError] = useState(null);
     const [isModalOpen, setModalOpen] = useState(false);
     const [selectedArticle, setSelectedArticle] = useState(null);
-    const {token} = useUser();
+    const { token } = useUser();
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = articles.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = Math.ceil(articles.length / itemsPerPage);
 
     const fetchArticles = async () => {
         setLoading(true);
         setError(null);
         try {
-        
+
             const response = await axiosClient.get('http://localhost:3000/api/v1/article',
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
             console.log('Response dari API:', response.data);
             console.log(response);
             setArticles(response.data.data || []);
@@ -108,6 +116,9 @@ const Article = () => {
         }
     };
 
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
 
     return (
         <>
@@ -130,59 +141,74 @@ const Article = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {articles.map((article) => (
+                                {currentItems.map((article) => (
                                     <tr key={article.artikel_id}>
                                         <td>{article.artikel_id}</td>
                                         <td>{article.title}</td>
                                         <td>{article.user_name}</td>
-                                        <td>
+                                        <td className="status-column">
                                             <span className={getStatusClass(article.status || "Pending")}>
                                                 {article.status || "Pending"}
                                             </span>
                                         </td>
                                         <td>
                                             <button
-                                                className="btn btn-primary"
+                                                className="btn btn-primary btn-sm"
                                                 onClick={() => openModal(article)}
                                             >
-                                                Ubah Status
+                                                Change Status
                                             </button>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
+
                     )}
+                    <div className="pagination mt-4 d-flex justify-content-center py-2" >
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index}
+                                className={`btn mx-1 ${currentPage === index + 1 ? "btn-primary active-page" : "btn-secondary"
+                                    }`}
+                                onClick={() => handlePageChange(index + 1)}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Modal */}
                 <Modal isOpenModal={isModalOpen} onClose={closeModal}>
                     <div>
-                        <h4>Ubah Status Artikel</h4>
+                        <h4>Change Status</h4>
                         {selectedArticle && (
                             <p>
-                                Artikel: <strong>{selectedArticle.title}</strong>
+                                Article: <strong>{selectedArticle.title}</strong>
                             </p>
                         )}
                         <div className="d-flex flex-column gap-2">
-                            <button
-                                className="btn btn-warning"
-                                onClick={() => handleUpdateStatus("Pending")}
-                            >
-                                Pending
-                            </button>
-                            <button
-                                className="btn btn-success"
-                                onClick={() => handleUpdateStatus("Published")}
-                            >
-                                Published
-                            </button>
-                            <button
-                                className="btn btn-danger"
-                                onClick={() => handleUpdateStatus("Rejected")}
-                            >
-                                Rejected
-                            </button>
+                            <div className="modal-buttons">
+                                <button
+                                    className="btn btn-warning"
+                                    onClick={() => handleUpdateStatus("Pending")}
+                                >
+                                    Pending
+                                </button>
+                                <button
+                                    className="btn btn-success"
+                                    onClick={() => handleUpdateStatus("Published")}
+                                >
+                                    Published
+                                </button>
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={() => handleUpdateStatus("Rejected")}
+                                >
+                                    Rejected
+                                </button>
+
+                            </div>
                         </div>
                     </div>
                 </Modal>
