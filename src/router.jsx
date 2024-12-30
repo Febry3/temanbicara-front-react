@@ -3,6 +3,7 @@ import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import Counselor from "./pages/Counselor/Counselor.jsx";
 import Article from "./pages/Article/Article.jsx";
 import Login from "./pages/Login/Login.jsx";
+import Report from "./pages/Report/Report.jsx";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./security/ProtectedRoute.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { path: "/counselor", element: <Counselor /> },
       { path: "/admin", element: <Admin />},
       { path: "/article", element: <Article /> },
+      { path: "/report", element: <Report /> },
     ],
   },
   {
