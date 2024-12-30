@@ -1,0 +1,29 @@
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.modal-buttons .btn {
+    width: 100%;
+    max-width: 400px;
+}
+
+.btn-warning {
+    color: white !important;
+}
+
+.table .status-column {
+    display: flex;
+    width: 120px; 
+    text-align: center; 
+}
+
+.table .badge {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    padding: 5px 0;
+}
