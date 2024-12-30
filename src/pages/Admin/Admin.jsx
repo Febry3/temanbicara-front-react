@@ -41,12 +41,12 @@ const Admin = () => {
     };
     const [isEditing, setIsEditing] = useState(false);
     const handleEdit = (admin) => {
-        setSelectedAdmin(admin);    
+        setSelectedAdmin(admin);
         setSelectedAdminId(admin.id);
         setIsEditing(true);
         setIsDeleteConfirmation(false);
         populateEditForm(admin);
-        setIsOpenConfirmationModal(true);  
+        setIsOpenConfirmationModal(true);
     };
     const populateEditForm = () => {
         setName(selectedAdmin.name || '');
@@ -171,14 +171,14 @@ const Admin = () => {
 
             try {
                 const response = await axiosClient.post('http://127.0.0.1:8000/api/v1/admin/verify-password', {
-                    email : currentEmail,
-                    password : password,
+                    email: currentEmail,
+                    password: password,
                 }, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-    
+
                 if (response.data.status === false) {
                     setPassword('');
                     setErrorMessage(response.data.message);
@@ -191,12 +191,12 @@ const Admin = () => {
                         return;
                     }
                 }
-    
+
             } catch (error) {
                 setErrorMessage(error.response.data.message);
                 setCreateError(error.response?.data.message || 'An error occurred');
             }
-            
+
         } else {
             const success = await createAdmin();
             if (success) {
@@ -220,7 +220,7 @@ const Admin = () => {
 
         try {
             const response = await axiosClient.post('http://127.0.0.1:8000/api/v1/admin/verify-password', {
-                email : currentEmail,
+                email: currentEmail,
                 password,
             }, {
                 headers: {
@@ -291,7 +291,7 @@ const Admin = () => {
 
     const updateAdmin = async () => {
         try {
-            console.log(email,name,nickname,gender,birthdate, phone);
+            console.log(email, name, nickname, gender, birthdate, phone);
             const formattedBirthdate = new Date(birthdate).toISOString().split('T')[0];
             const response = await axiosClient.put(`http://127.0.0.1:3000/api/v1/admin/${selectedAdminId}`, {
                 email: email,
@@ -375,35 +375,48 @@ const Admin = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {admins.map((admin) => (
-                            <tr key={admin.id}>
-                                <td>{admin.id}</td>
-                                <td>{admin.name}</td>
-                                <td>{admin.email}</td>
-                                <td>{admin.phone_number}</td>
-                                <td>
-                                    <div className="d-flex gap-1">
-                                        <button type="button" className="btn btn-primary">
-                                            <i className="bi bi-eye"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="btn btn-success"
-                                            onClick={() => handleEdit(admin)}
-                                        >
-                                            <i className="bi bi-pencil"></i>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="btn btn-danger"
-                                            onClick={() => handleDelete(admin.id)}
-                                        >
-                                            <i className="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
+
+                        {
+
+                            admins.length === 0 ?
+                                <tr>
+                                    <td colSpan={5} rowSpan={5}>
+                                        <h3 className='text-center my-5 clr-primary'>Data konselor masih kosong</h3>
+                                    </td>
+                                </tr>
+                                :
+
+                                admins.map((admin) => (
+                                    <tr key={admin.id}>
+                                        <td>{admin.id}</td>
+                                        <td>{admin.name}</td>
+                                        <td>{admin.email}</td>
+                                        <td>{admin.phone_number}</td>
+                                        <td>
+                                            <div className="d-flex gap-1">
+                                                <button type="button" className="btn btn-primary">
+                                                    <i className="bi bi-eye"></i>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-success"
+                                                    onClick={() => handleEdit(admin)}
+                                                >
+                                                    <i className="bi bi-pencil"></i>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger"
+                                                    onClick={() => handleDelete(admin.id)}
+                                                >
+                                                    <i className="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+
+                        }
                     </tbody>
                 </table>
             </div>

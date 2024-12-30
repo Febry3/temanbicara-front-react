@@ -168,7 +168,7 @@ const Counselor = () => {
                 <button onClick={() => setIsOpenModal(true)} type="button" className='btn btn-success btn-add'><i className="bi bi-plus-circle"></i> Tambah Konselor</button>
             </div>
 
-            <div className='shadow rounded border p-3'>
+            <div className='shadow rounded border px-3 pt-3'>
                 <table className='table table-borderless '>
                     {isFetching ?
                         <TableLoader isSidebarOpen={isSidebarOpen} /> :
@@ -183,24 +183,32 @@ const Counselor = () => {
                                 </tr>
                             </thead>
                             <tbody>
+
                                 {
-                                    counselorAccount?.data.data.map((acc) => {
-                                        return (
-                                            <tr key={acc.id}>
-                                                <td>{acc.id}</td>
-                                                <td>{acc.name}</td>
-                                                <td>{acc.email}</td>
-                                                <td>{acc.phone_number}</td>
-                                                <td>
-                                                    <div className='d-flex gap-1'>
-                                                        <button type="button" className='btn btn-primary'><i className="bi bi-eye"></i></button>
-                                                        <button type="button" className='btn btn-success'><i className="bi bi-pencil"></i></button>
-                                                        <button onClick={() => deleteCounselorAccount(acc.id)} type="button" className='btn btn-danger'><i className="bi bi-trash"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        )
-                                    })
+                                    counselorAccount.data.data.length === 0 ?
+                                        <tr>
+                                            <td colSpan={5} rowSpan={5}>
+                                                <h3 className='text-center my-5 clr-primary'>Data konselor masih kosong</h3>
+                                            </td>
+                                        </tr>
+                                        :
+                                        counselorAccount?.data.data.map((acc) => {
+                                            return (
+                                                <tr key={acc.id}>
+                                                    <td>{acc.id}</td>
+                                                    <td>{acc.name}</td>
+                                                    <td>{acc.email}</td>
+                                                    <td>{acc.phone_number}</td>
+                                                    <td>
+                                                        <div className='d-flex gap-1'>
+                                                            <button type="button" className='btn btn-primary'><i className="bi bi-eye"></i></button>
+                                                            <button type="button" className='btn btn-success'><i className="bi bi-pencil"></i></button>
+                                                            <button onClick={() => deleteCounselorAccount(acc.id)} type="button" className='btn btn-danger'><i className="bi bi-trash"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
                                 }
 
                             </tbody>
@@ -258,8 +266,8 @@ const Counselor = () => {
                                 </div>
                                 <select className="form-select" value={gender} onChange={(event) => handleGender(event)} >
                                     <option value="" disabled>Gender</option>
-                                    <option value="Laki-laki" >Laki-laki</option>
-                                    <option value="Perempuan" >Perempuan</option>
+                                    <option value="male">Laki-laki</option>
+                                    <option value="female" >Perempuan</option>
                                 </select>
                             </div>
 
