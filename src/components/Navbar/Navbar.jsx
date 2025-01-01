@@ -29,7 +29,7 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
                                     <Link to="/counselor"> <i className="bi bi-person"></i> Counselor</Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i className="bi bi-bar-chart"></i> Report</Link>
+                                    <Link to="/report"><i className="bi bi-bar-chart"></i> Report</Link>
                                 </li>
                                 <li>
                                     <Link to="/admin" ><i className="bi bi-person-gear"></i> Admin</Link>
@@ -55,10 +55,10 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
                                     <Link to="/counselor"> <i className="bi bi-person"></i></Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i className="bi bi-bar-chart"></i></Link>
+                                    <Link to="/report"><i className="bi bi-bar-chart"></i></Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i className="bi bi-person-gear"></i></Link>
+                                    <Link to="/admin"><i className="bi bi-person-gear"></i></Link>
                                 </li>
                                 <li>
                                     <Link onClick={logoutUser}><i className="bi bi-box-arrow-left"></i></Link>
