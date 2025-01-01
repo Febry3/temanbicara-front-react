@@ -12,7 +12,7 @@ export const useFetchCounselor = ({ token }) => {
                     },
                 }
             );
-
+            console.log(response);
             return response;
         },
         queryKey: ['counselorAccount'],

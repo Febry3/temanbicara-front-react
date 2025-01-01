@@ -11,7 +11,19 @@ export const useCreateCounselorAccount = ({ onSuccess, token, onError }) => {
                     },
                 }
             );
-            return response;
+            const counselorData = response.data.data;
+            const expertises = body.expertises.split(',');
+
+            for (let i = 0; i < expertises.length; i++) {
+                const res = await axiosClient.post('http://localhost:3000/api/v1/expertise', { type: expertises[i], counselor_id: counselorData.id },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+                console.log(res);
+            }
         },
         onSuccess,
         onError,
