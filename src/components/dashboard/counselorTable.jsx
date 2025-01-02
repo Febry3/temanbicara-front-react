@@ -12,7 +12,7 @@ export default function CounselorTable ({ groupedExpertise }) {
    setPage(page);
  };
   return (
-    <div className=" flex-shrink-1 rounded shadow p-4">
+    <div className=" col-6 rounded shadow p-4">
       <h3>Counselor</h3>
       <table className="table">
         <thead>

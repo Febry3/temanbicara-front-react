@@ -16,6 +16,43 @@ const Dashboard = () => {
   const [admin, setAdmin] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const fetchData = async () => {
+    const token = localStorage.getItem("TOKEN");
+
+    setLoading(true);
+    try {
+      const [
+        expertiseResponse,
+        articleResponse,
+        counselorResponse,
+        adminResponse,
+      ] = await Promise.all([
+        axios.get("http://localhost:3000/api/v1/Expertise", {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get("http://localhost:3000/api/v1/article", {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get("http://localhost:3000/api/v1/counselor", {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        axios.get("http://localhost:3000/api/v1/admin", {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+      ]);
+
+      console.log(expertiseResponse);
+      setCounselor(counselorResponse.data.data);
+      setExpertise(expertiseResponse.data.data);
+      setAdmin(adminResponse.data.data);
+      setArticle(articleResponse.data.data);
+      setLoading(false);
+    } catch (err) {
+      setError("Error fetching data");
+      setLoading(false);
+      console.log(err.response || err);
+    }
+  };
   useEffect(() => {
     const token = localStorage.getItem("TOKEN");
 
@@ -25,40 +62,8 @@ const Dashboard = () => {
       return;
     }
 
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const [expertiseResponse, articleResponse, counselorResponse, adminResponse] = await Promise.all([
-          axios.get("http://localhost:3000/api/v1/Expertise", {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-          axios.get("http://localhost:3000/api/v1/article", {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-          axios.get("http://localhost:3000/api/v1/counselor", {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-          axios.get("http://localhost:3000/api/v1/admin", {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-        ]);
-
-        console.log(expertiseResponse);
-        setCounselor(counselorResponse.data.data);
-        setExpertise(expertiseResponse.data.data);
-        setAdmin(adminResponse.data.data)
-        setArticle(articleResponse.data.data);
-        setLoading(false);
-      } catch (err) {
-        setError("Error fetching data");
-        setLoading(false);
-        console.log(err.response || err);
-      }
-    };
-
     fetchData();
   }, []);
-
 
   const groupedExpertise = expertise.reduce((acc, item) => {
     const { user_name, user_email, type } = item;
@@ -83,45 +88,38 @@ const Dashboard = () => {
     return acc;
   }, {});
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
     <div className="d-flex flex-column">
       <Header title={"Dashboard"} />
       {admin.map((data, key) => console.log(data, key))}
       <div className="flex-grow-1 d-flex gap-3 flex-row">
-        <InfoItem
-          num={article.length}
-          title={"Article"}
-        />
-        <InfoItem
-          num={Object.keys(groupedExpertise).length}
-          title={"Quiz"}
-        />
-        <InfoItem
-          num={counselor.length}
-          title={"Counselor"}
-        />
-        <InfoItem
-          num={admin.length}
-          title={"Admin"}
-        />
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p className="text-danger">Error: {error}</p>
+        ) : (
+          <>
+            <InfoItem num={article.length} title={"Article"} />
+            <InfoItem num={counselor.length} title={"Counselor"} />
+            <InfoItem num={admin.length} title={"Admin"} />
+          </>
+        )}
       </div>
 
       <div className="flex-shrink-1 d-flex gap-3 mt-5">
-        <ArticleTable Article={article} />
-        <QuizTable />
-        <CounselorTable groupedExpertise={groupedExpertise} />
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p className="text-danger">Error: {error}</p>
+        ) : (
+          <>
+            <ArticleTable  Article={article} />
+            <CounselorTable groupedExpertise={groupedExpertise} />
+          </>
+        )}
       </div>
     </div>
   );
 };
-
 
 export default Dashboard;
