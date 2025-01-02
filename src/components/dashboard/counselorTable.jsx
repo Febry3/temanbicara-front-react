@@ -41,7 +41,7 @@ export default function CounselorTable({ groupedExpertise }) {
         </tbody>
       </table>
       <div className="pagination d-flex justify-content-center align-items-center">
-        {groupedExpertise.length === 0 ? (
+        {arrExpertise.length === 0 ? (
           <div>No Counselor available.</div>
         ) : (
           <div>

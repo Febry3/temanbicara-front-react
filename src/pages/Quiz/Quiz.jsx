@@ -72,11 +72,10 @@ export default function Quiz() {
     }
   };
 
-  // Menyimpan data ke local storage
   const saveToLocalStorage = () => {
     const quizData = { question, answers };
     localStorage.setItem("quizData", JSON.stringify(quizData));
-    setIsOpenConfirmModal(true); // Buka modal konfirmasi
+    setIsOpenConfirmModal(true); 
   };
 
   const handleSubmit = async () => {
@@ -96,13 +95,11 @@ export default function Quiz() {
           },
         }
       );
-
-      // Cek status respons dari server
       if (response.status === 200) {
-        // alert("Quiz berhasil disimpan ke database!");
+        
         fetchQuizzes();
-        localStorage.removeItem("quizData"); // Hapus data dari local storage
-        resetForm(); // Reset form
+        localStorage.removeItem("quizData"); 
+        resetForm(); 
       } else {
         alert("Terjadi kesalahan saat menyimpan data di server.");
       }
