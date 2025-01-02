@@ -234,6 +234,7 @@ const Counselor = () => {
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Nomor Telepon</th>
+                                    <th>Keahlian</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -254,6 +255,7 @@ const Counselor = () => {
                                                     <td>{acc.name}</td>
                                                     <td>{acc.email}</td>
                                                     <td>{acc.phone_number}</td>
+                                                    <td>{acc.expertises}</td>
                                                     <td>
                                                         <div className='d-flex gap-1'>
                                                             <button onClick={() => openViewModal(acc)} type="button" className='btn btn-primary'><i className="bi bi-eye"></i></button>
