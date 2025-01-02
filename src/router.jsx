@@ -8,6 +8,7 @@ import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./security/ProtectedRoute.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
+import Quiz from "./pages/Quiz/Quiz.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: "/admin", element: <Admin />},
       { path: "/article", element: <Article /> },
       { path: "/report", element: <Report /> },
+      { path: "/quiz", element: <Quiz /> }
     ],
   },
   {
