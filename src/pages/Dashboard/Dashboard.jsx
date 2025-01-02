@@ -90,6 +90,7 @@ const Dashboard = () => {
 
   return (
     <div className="d-flex flex-column">
+      {article.map((data,idx)=> console.log(data,idx))};
       <Header title={"Dashboard"} />
       {admin.map((data, key) => console.log(data, key))}
       <div className="flex-grow-1 d-flex gap-3 flex-row">
