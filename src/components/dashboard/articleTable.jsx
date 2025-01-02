@@ -12,7 +12,7 @@ export default function ArticleTable ({ Article }){
     setPage(page);
   };
     return (
-      <div className="flex-grow-1 rounded shadow p-4">
+      <div className="col-6 rounded shadow p-4">
         <h3>Article</h3>
         <table className="table">
           <thead>
