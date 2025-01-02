@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import Status from "./status";
+import Status from "../dashboard/status";
 
 
 export default function TopArticleTable({ Article }) {
