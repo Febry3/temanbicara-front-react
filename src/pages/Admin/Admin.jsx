@@ -394,9 +394,6 @@ const Admin = () => {
                                         <td>{admin.phone_number}</td>
                                         <td>
                                             <div className="d-flex gap-1">
-                                                <button type="button" className="btn btn-primary">
-                                                    <i className="bi bi-eye"></i>
-                                                </button>
                                                 <button
                                                     type="button"
                                                     className="btn btn-success"
@@ -504,8 +501,8 @@ const Admin = () => {
                                 </div>
                                 <select className="form-select" value={gender} onChange={(event) => handleGender(event)} >
                                     <option value="" disabled>Gender</option>
-                                    <option value="Laki-laki" >Laki-laki</option>
-                                    <option value="Perempuan" >Perempuan</option>
+                                    <option value="male" >Laki-laki</option>
+                                    <option value="female" >Perempuan</option>
                                 </select>
                             </div>
 

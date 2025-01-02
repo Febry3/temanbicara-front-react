@@ -244,7 +244,7 @@ const Counselor = () => {
                                 {
                                     counselorAccount?.data.data.length === 0 ?
                                         <tr>
-                                            <td colSpan={5} rowSpan={5}>
+                                            <td colSpan={6} rowSpan={6}>
                                                 <h3 className='text-center my-5 clr-primary'>Data konselor masih kosong</h3>
                                             </td>
                                         </tr>
@@ -356,75 +356,7 @@ const Counselor = () => {
                 </div>
             </Modal >
 
-            {/* <Modal onClose={() => setIsOpenModal(false)} isOpenModal={isOpenModal} isSidebarOpen={isSidebarOpen}>
-                <div className='p-5'>
-                    <form>
-                        <h3 className='mb-3 text-center'>Mengubah akun konselor</h3>
-                        <div className='mb-3 d-flex flex-column'>
-                            <div className="input-group">
-                                <span className="input-group-text" id="name"><i className="bi bi-person"></i></span>
-                                <input type="text" className="form-control" placeholder="Name" aria-label="name" aria-describedby="name" name='name' value={name} onChange={(event) => handleName(event)} />
-                            </div>
-                            {formError.name && (<small className='text-danger'>{formError.name}</small>)}
-                        </div>
-                        <div className='mb-3 d-flex flex-column'>
-                            <div className="input-group">
-                                <span className="input-group-text" id="nickname"><i className="bi bi-person"></i></span>
-                                <input type="text" className="form-control" placeholder="Nickname" aria-label="nickname" aria-describedby="nickname" name='nickname' value={nickname} onChange={(event) => handleNickname(event)} />
-                            </div>
-                            {formError.nickname && (<small className='text-danger'>{formError.nickname}</small>)}
-                        </div>
-                        <div className='mb-3 d-flex flex-column'>
-                            <div className="input-group">
-                                <span className="input-group-text" id="email"><i className="bi bi-envelope-at"></i></span>
-                                <input type="email" className="form-control" placeholder="Email" aria-label="email" aria-describedby="email" name='email' value={email} onChange={(event) => handleEmail(event)} />
-                            </div>
-                            {formError.email && (<small className='text-danger'>{formError.email}</small>)}
-                        </div>
-                        <div className='mb-3 d-flex flex-column'>
-                            <div className="input-group">
-                                <span className="input-group-text" id="phone_number"><i className="bi bi-telephone"></i></span>
-                                <input type="text" className="form-control" placeholder="Phone Number" aria-label="phone_number" aria-describedby="phone_number" name='phone_number' value={phone} onChange={(event) => handlePhone(event)} />
-                            </div>
-                            {formError.phone && (<small className='text-danger'>{formError.phone}</small>)}
-                        </div>
-                        <div className='mb-3 d-flex flex-column'>
-                            <div className="input-group">
-                                <span className="input-group-text" id="password"><i className="bi bi-key"></i></span>
-                                <input type="password" className="form-control" placeholder="Password" aria-label="password" aria-describedby="password" name='password' value={password} onChange={(event) => handlePassword(event)} />
-                            </div>
-                            {formError.password && (<small className='text-danger'>{formError.password}</small>)}
-                        </div>
-                        <div>
-                            <div className='d-flex gap-3'>
-                                <div className="input-group">
-                                    <span className="input-group-text" id="birthdate"><i className="bi bi-cake"></i></span>
-                                    <input type="date" className="form-control" placeholder="Birthdate" aria-label="birthdate" aria-describedby="birthdate" name='birthdate' value={birthdate} onChange={(event) => handleBirthdate(event)} />
-                                </div>
-                                <select className="form-select" value={gender} onChange={(event) => handleGender(event)} >
-                                    <option value="" disabled>Gender</option>
-                                    <option value="male">Laki-laki</option>
-                                    <option value="female" >Perempuan</option>
-                                </select>
-                            </div>
 
-                            {(formError.gender || formError.birthdate) && (<small className='text-danger'> Gender atau tanggal lahir tidak boleh kosong</small>)}
-                        </div>
-                        <div className='d-flex justify-content-center'>
-                            {
-                                isCreatePending ?
-                                    <div className='my-4'><MoonLoader loading size={30} color='#7D944D' /></div> :
-                                    <button type="button" className="btn btn-primary my-3 py-2" onClick={(event) => handleSubmit(event)}>
-                                        Buat Akun Konselor
-                                    </button>
-                            }
-                        </div>
-
-                        {createError && (<small className='text-danger'> *{createError} </small>)}
-
-                    </form>
-                </div>
-            </Modal > */}
         </>
     );
 }

@@ -90,7 +90,7 @@ const Dashboard = () => {
 
   return (
     <div className="d-flex flex-column">
-      {article.map((data,idx)=> console.log(data,idx))};
+      {article.map((data, idx) => console.log(data, idx))}
       <Header title={"Dashboard"} />
       {admin.map((data, key) => console.log(data, key))}
       <div className="flex-grow-1 d-flex gap-3 flex-row">
@@ -114,7 +114,7 @@ const Dashboard = () => {
           <p className="text-danger">Error: {error}</p>
         ) : (
           <>
-            <ArticleTable  Article={article} />
+            <ArticleTable Article={article} />
             <CounselorTable groupedExpertise={groupedExpertise} />
           </>
         )}
