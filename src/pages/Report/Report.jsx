@@ -5,7 +5,8 @@ import Header from '../../components/Header/Header';
 import axios from "axios";
 import CounselorTable from "../../components/dashboard/counselorTable";
 import QuizTable from "../../components/dashboard/quizTable";
-import TopArticleTable from '../../components/dashboard/topArticleTable';
+import TopArticleTable from '../../components/Report/topArticleTable';
+import TopCounselorTable from "../../components/Report/topCounselorTable";
 
 const Report = () => {
     const [expertise, setExpertise] = useState([]);
@@ -33,7 +34,7 @@ const Report = () => {
                     axios.get("http://localhost:3000/api/v1/article", {
                         headers: { Authorization: `Bearer ${token}` },
                     }),
-                    axios.get("http://localhost:3000/api/v1/counselor", {
+                    axios.get("http://localhost:3000/api/v1/consultation", {
                         headers: { Authorization: `Bearer ${token}` },
                     }),
                     axios.get("http://localhost:3000/api/v1/admin", {
@@ -97,8 +98,7 @@ const Report = () => {
 
             <div className="flex-shrink-1 d-flex gap-3 mt-5">
                 <TopArticleTable Article={article} />
-                <QuizTable />
-                <CounselorTable groupedExpertise={groupedExpertise} />
+                <TopCounselorTable consultations={counselor} />
             </div>
         </div>
 
