@@ -23,7 +23,7 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
                                     <Link to="/article"> <i className="bi bi-journal-text"></i> Article</Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i className="bi bi-clipboard"></i> Quiz</Link>
+                                    <Link to="/quiz"><i className="bi bi-clipboard"></i> Quiz</Link>
                                 </li>
                                 <li>
                                     <Link to="/counselor"> <i className="bi bi-person"></i> Counselor</Link>
@@ -49,7 +49,7 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
                                     <Link to="/article"> <i className="bi bi-journal-text"></i></Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact"><i className="bi bi-clipboard"></i></Link>
+                                    <Link to="/quiz"><i className="bi bi-clipboard"></i></Link>
                                 </li>
                                 <li>
                                     <Link to="/counselor"> <i className="bi bi-person"></i></Link>
