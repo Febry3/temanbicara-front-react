@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import Header from "../../components/Header/Header";
 import axiosClient from "../../axios";
@@ -5,7 +6,6 @@ import { useUser } from "../../context/UserContext";
 import { useEffect } from "react";
 import "./Quiz.css";
 import Modal from "../../components/Modal/Modal";
-import Pagination from "../../components/Quiz/pigination";
 
 export default function Quiz() {
   const [quizzes, setQuizzes] = useState([]);
@@ -216,7 +216,7 @@ export default function Quiz() {
 
   return (
     <>
-      <div class="container-fluid py-3 px-5">
+      <div className="container-fluid py-3 px-5">
         <Header title={"Quiz"} />
         <div className="mb-3 d-flex justify-content-end">
           <button
@@ -386,7 +386,7 @@ export default function Quiz() {
               <div className="mb-3 d-flex flex-column">
                 <div className="input-group">
                   <span className="input-group-text" id="question">
-                    <i class="bi bi-patch-question"></i>
+                    <i className="bi bi-patch-question"></i>
                   </span>
                   <input
                     type="text"
@@ -404,7 +404,7 @@ export default function Quiz() {
                 <div className="mb-3 d-flex gap-2" key={index}>
                   <div className="input-group">
                     <span className="input-group-text" id="name">
-                      <i class="bi bi-list-ul"></i>
+                      <i className="bi bi-list-ul"></i>
                     </span>
                     <input
                       type="text"
@@ -421,7 +421,7 @@ export default function Quiz() {
                   </div>
                   <div className="input-group">
                     <span className="input-group-text" id="name">
-                      <i class="bi bi-coin"></i>
+                      <i className="bi bi-coin"></i>
                     </span>
                     <input
                       type="text"
